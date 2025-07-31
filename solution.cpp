@@ -9,18 +9,21 @@ public:
         unordered_set<int> result;
         unordered_set<int> current;
         
-        for (int num : arr) {
+        for (int i = 0; i < arr.size(); i++) {
+            int num = arr[i];
             unordered_set<int> next;
             // 加入當前元素本身
             next.insert(num);
             
             // 將當前元素與之前所有可能的OR值進行OR運算
-            for (int prev : current) {
+            for (unordered_set<int>::iterator it = current.begin(); it != current.end(); it++) {
+                int prev = *it;
                 next.insert(prev | num);
             }
             
             // 將所有新的OR值加入結果集
-            for (int val : next) {
+            for (unordered_set<int>::iterator it = next.begin(); it != next.end(); it++) {
+                int val = *it;
                 result.insert(val);
             }
             
